@@ -1,0 +1,30 @@
+# Waveforms and simulator outputs
+*.vcd
+*.fsdb
+*.wlf
+*.vpd
+*.saif
+simv
+simv.daidir/
+csrc/
+work/
+transcript
+
+# Vivado work folders
+*.jou
+*.str
+*.cache/
+*.hw/
+*.runs/
+*.sim/
+*.ip_user_files/
+.Xil/
+
+# Synthesis tool work files
+*.ddc
+WORK/
+alib-52/
+
+# Laptop junk
+.DS_Store
+Thumbs.db
