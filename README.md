@@ -43,9 +43,9 @@ Every flow has its own file with the **same module name and ports**
 
 | File | Used for | Written by |
 |---|---|---|
-| `clk_gate_sim.v` | functional simulation (latch + AND) | Person 3 |
-| `clk_gate_fpga.v` | Vivado implementation (BUFGCE or clock enable) | Person 3 |
-| `clk_gate_asic.v` | OpenLane / Sky130 clock-gating cell | Rekha |
+| `clk_gate_sim.v` | functional simulation (latch + AND) | RESHMI |
+| `clk_gate_fpga.v` | Vivado implementation (BUFGCE or clock enable) | RESHMI |
+| `clk_gate_asic.v` | OpenLane / Sky130 clock-gating cell | REKHA |
 
 Do not use latch + AND gating for FPGA implementation.
 
