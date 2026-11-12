@@ -158,8 +158,8 @@ the multiplier inputs still while idle, so the two techniques overlap.
 - [ ] Optional extra variable: 16-bit width, or a second clock frequency
 
 ## Status
-- [ ] Stage 1: Literature review and scope
-- [ ] Stage 2: Baseline MAC and testbench
+- [x] Stage 1: Literature review and scope
+- [x] Stage 2: Baseline MAC and testbench
 - [x] Stage 3, ASIC side: `mac_cg.v`, `mac_oi.v`, `clk_gate_asic.v` in `rtl_gated/`
 - [ ] Stage 3, FPGA side: `clk_gate_sim.v`, `clk_gate_fpga.v`
 - [x] Stage 4, ASIC: reports and results table in `power_reports/asic/`
