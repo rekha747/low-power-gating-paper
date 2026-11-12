@@ -1,0 +1,4 @@
+DESIGN_NAME: mac_cg
+VERILOG_FILES: [dir::mac_cg.v, dir::clk_gate_asic.v]
+CLOCK_PORT: clk
+CLOCK_PERIOD: 20

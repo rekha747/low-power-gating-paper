@@ -1,0 +1,16 @@
+OpenROAD edf00dff99f6c40d67a30c0e22a8191c5d2ed9d6 
+Features included (+) or not (-): +Charts +GPU +GUI +Python
+This program is licensed under the BSD-3 license. See the LICENSE file for details.
+Components of this program may be licensed under more restrictive licenses which must be honored.
+Annotated 2872 pin activities.
+Group                  Internal  Switching    Leakage      Total
+                          Power      Power      Power      Power (Watts)
+----------------------------------------------------------------
+Sequential             9.98e-05   1.59e-05   4.34e-10   1.16e-04  25.8%
+Combinational          1.05e-04   1.44e-04   1.89e-09   2.49e-04  55.4%
+Clock                  4.76e-05   3.65e-05   1.12e-09   8.42e-05  18.8%
+Macro                  0.00e+00   0.00e+00   0.00e+00   0.00e+00   0.0%
+Pad                    0.00e+00   0.00e+00   0.00e+00   0.00e+00   0.0%
+----------------------------------------------------------------
+Total                  2.52e-04   1.96e-04   3.45e-09   4.48e-04 100.0%
+                          56.3%      43.7%       0.0%
