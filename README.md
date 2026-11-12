@@ -65,8 +65,10 @@ Do not use latch + AND gating for FPGA implementation.
 |---|---|---|
 | 1 | Literature review and scope | NILOFAR |
 | 2 | Baseline MAC and testbench | MANVITHA |
-| 3 | Clock gating and operand isolation | RESHMI |
-| 4 | Power analysis (FPGA and ASIC) | REKHA |
+| 3 | Clock gating and operand isolation: shared RTL (`mac_cg.v`, `mac_oi.v`) and ASIC clock gate | REKHA |
+| 3 | FPGA clock gate (`clk_gate_sim.v`, `clk_gate_fpga.v`) | RESHMI |
+| 4 | Power analysis, ASIC | REKHA |
+| 4 | Power analysis, FPGA | RESHMI |
 | 5 | Paper writing | SUMMY |
 
 Each stage hands over to the next through this repo. Tell the team in the
@@ -114,17 +116,53 @@ vvp sim +DUTY=90
 - On Vivado, small memories may be mapped to LUT RAM. Not an issue for this block, but keep in mind if it is extended.
 - On ASIC, OpenLane's default power report assumes default switching activity. Activity-specific power needs a gate-level simulation dump read by OpenSTA.
 
+## ASIC flow: how the results were produced (REKHA)
+Tools: OpenLane 2.3.10 (Docker image), PDK `sky130A` (`sky130_fd_sc_hd`), Icarus Verilog.
+OpenROAD is run from inside the OpenLane image.
+
+Settings, identical for all three designs: `CLOCK_PORT: clk`, `CLOCK_PERIOD: 20`
+(50 MHz), no other overrides. The configs and final metrics are in
+`power_reports/asic/<design>/`. Folder paths must not contain spaces, or the
+OpenLane lint step fails.
+
+1. In each design folder, run `openlane --dockerized config.yaml`.
+2. Simulate the final netlist (`runs/*/final/nl/<design>.nl.v`) with the
+   testbench at `DUTY=10`, `50` and `90`. Use a copy of `tb_mac.v` without the
+   `#(.W(W), .ACC_W(ACC_W))` parameter override (the netlist has no parameters),
+   and compile with the Sky130 cell models:
+   ```
+   iverilog -DFUNCTIONAL -DUNIT_DELAY=#1 -DDUT=<design> -o gl tb_mac_gl.v \
+     <netlist> <cells>/primitives.v <cells>/sky130_fd_sc_hd.v
+   vvp gl +DUTY=<duty>
+   ```
+   Every run must print `PASS`. Rename `mac.vcd` after each run
+   (`<design>_<duty>.vcd`). Do not push VCD files.
+3. Run `scripts/run_power.sh <design> <duty>` for all 9 runs. It reads the final
+   OpenLane database, the typical-corner library (`tt_025C_1v80`), the nominal
+   SPEF and the VCD into OpenROAD (`scripts/power.tcl`) and writes
+   `power_<design>_<duty>.rpt`. Check that the `Annotated ... pin activities`
+   line is the same for all three duty levels of one design.
+4. Run `scripts/summarize.py` to produce `results_power.csv`, and
+   `scripts/plot_savings.py` for the figure in `paper/`.
+
+Limitations of the ASIC numbers: one fixed-seed run per point; gate-level
+simulation with unit delay, so glitch power is only roughly modeled; data toggles
+even when `valid_in` is low, which favors both techniques; clock gating also holds
+the multiplier inputs still while idle, so the two techniques overlap.
+
 ## Open items
 - [ ] Target conference/journal, template and deadline
 - [ ] Faculty guide approval
 - [ ] FPGA part number
-- [ ] Who runs the Vivado power runs (Rekha with a friend's machine, or Person 3)
+- [x] Who runs the Vivado power runs: RESHMI
 - [ ] Optional extra variable: 16-bit width, or a second clock frequency
 
 ## Status
 - [ ] Stage 1: Literature review and scope
 - [ ] Stage 2: Baseline MAC and testbench
-- [ ] Stage 3: Gated versions
-- [ ] Stage 4: Power analysis
+- [x] Stage 3, ASIC side: `mac_cg.v`, `mac_oi.v`, `clk_gate_asic.v` in `rtl_gated/`
+- [ ] Stage 3, FPGA side: `clk_gate_sim.v`, `clk_gate_fpga.v`
+- [x] Stage 4, ASIC: reports and results table in `power_reports/asic/`
+- [ ] Stage 4, FPGA: reports and results table in `power_reports/fpga/`
 - [ ] Stage 5: Paper writing
 - [ ] Final review and submission
