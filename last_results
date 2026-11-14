@@ -1,0 +1,32 @@
+mac_baseline 10 sim: PASS (duty=10%, W=8)
+mac_baseline 10 power:   | Dynamic (W)              | 0.003                                              |
+mac_baseline 10 matched: | Design Nets Matched      | 40%   (122/303)                                    |
+mac_baseline 50 sim: PASS (duty=50%, W=8)
+mac_baseline 50 power:   | Dynamic (W)              | 0.006                                              |
+mac_baseline 50 matched: | Design Nets Matched      | 40%   (122/303)                                    |
+mac_baseline 90 sim: PASS (duty=90%, W=8)
+mac_baseline 90 power:   | Dynamic (W)              | 0.009                                              |
+mac_baseline 90 matched: | Design Nets Matched      | 40%   (122/303)                                    |
+mac_cg 10 sim: PASS (duty=10%, W=8)
+mac_cg 10 power:   | Dynamic (W)              | 0.003                                        |
+mac_cg 10 matched: | Design Nets Matched      | 41%   (125/305)                              |
+mac_cg 50 sim: PASS (duty=50%, W=8)
+mac_cg 50 power:   | Dynamic (W)              | 0.006                                        |
+mac_cg 50 matched: | Design Nets Matched      | 41%   (125/305)                              |
+mac_cg 90 sim: PASS (duty=90%, W=8)
+mac_cg 90 power:   | Dynamic (W)              | 0.009                                        |
+mac_cg 90 matched: | Design Nets Matched      | 41%   (125/305)                              |
+mac_oi 10 sim: PASS (duty=10%, W=8)
+mac_oi 10 power:   | Dynamic (W)              | 0.002                                        |
+mac_oi 10 matched: | Design Nets Matched      | 43%   (138/319)                              |
+mac_oi 50 sim: PASS (duty=50%, W=8)
+mac_oi 50 power:   | Dynamic (W)              | 0.006                                        |
+mac_oi 50 matched: | Design Nets Matched      | 43%   (138/319)                              |
+mac_oi 90 sim: PASS (duty=90%, W=8)
+mac_oi 90 power:   | Dynamic (W)              | 0.009                                        |
+mac_oi 90 matched: | Design Nets Matched      | 43%   (138/319)                              |
+ALL DONE
+duty,baseline_mW,cg_mW,cg_saving_pct,oi_mW,oi_saving_pct
+10,3.00,3.00,0.0,2.00,33.3
+50,6.00,6.00,0.0,6.00,0.0
+90,9.00,9.00,0.0,9.00,0.0
