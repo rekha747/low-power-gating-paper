@@ -161,8 +161,8 @@ the multiplier inputs still while idle, so the two techniques overlap.
 - [x] Stage 1: Literature review and scope
 - [x] Stage 2: Baseline MAC and testbench
 - [x] Stage 3, ASIC side: `mac_cg.v`, `mac_oi.v`, `clk_gate_asic.v` in `rtl_gated/`
-- [ ] Stage 3, FPGA side: `clk_gate_sim.v`, `clk_gate_fpga.v`
+- [x] Stage 3, FPGA side: `clk_gate_sim.v`, `clk_gate_fpga.v`
 - [x] Stage 4, ASIC: reports and results table in `power_reports/asic/`
-- [ ] Stage 4, FPGA: reports and results table in `power_reports/fpga/`
-- [ ] Stage 5: Paper writing
-- [ ] Final review and submission
+- [x] Stage 4, FPGA: reports and results table in `power_reports/fpga/`
+- [x] Stage 5: Paper writing
+- [x] Final review and submission
